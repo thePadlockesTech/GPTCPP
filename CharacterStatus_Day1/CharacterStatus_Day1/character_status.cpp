@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <vector>
 
 using namespace std;
 
@@ -13,7 +14,10 @@ private:
 
 public:
 	Character(std::string characterName, int startingHealth, int startingArmor) : 
-	name(characterName), health(startingHealth), maxHealth(100), armor(startingArmor) {
+	name(characterName), 
+	health(startingHealth), 
+	maxHealth(100), 
+	armor(startingArmor) {
 	
 	}
 
@@ -52,35 +56,43 @@ public:
 		armor = armorValue;
 	}
 
-	const std::string& GetName() {
+	std::string GetName() const {
 		return name;
 	}
 };
 
+void DisplayAllEnemies(const std::vector<Character>& enemies);
+void DamageAllEnemies(std::vector<Character>& enemies, int damage);
+void HealAllEnemies(std::vector<Character>& enemies, int healAmount);
+
 
 int main() {
-	Character Goblin("Goblin", 60, 2);
-	Character Orc("Orc", 100, 5);
-	Character Skeleton("Skeleton", 45, 3);
+	std::vector<Character> enemies;
 
-	cout << Goblin.GetName() << endl;
-	cout << Orc.GetName() << endl;
-	cout << Skeleton.GetName() << endl;
-	cout << Goblin.GetHealth() << endl;
-	cout << Orc.GetHealth() << endl;
-	cout << Skeleton.GetHealth() << endl;
+	enemies.emplace_back("Goblin", 60, 2);
+	enemies.emplace_back("Orc", 100, 5);
+	enemies.emplace_back("Skeleton", 45, 3);
 
-	Goblin.TakeDamage(20);
-	Orc.TakeDamage(20);
-	Skeleton.TakeDamage(20);
+	DisplayAllEnemies(enemies);
+	DamageAllEnemies(enemies, 25);
+	HealAllEnemies(enemies, 10);
+	DisplayAllEnemies(enemies);
+}
 
-	cout << Goblin.GetHealth() << endl;
-	cout << Orc.GetHealth() << endl;
-	cout << Skeleton.GetHealth() << endl;
+void DisplayAllEnemies(const std::vector<Character>& enemies) {
+	for (const Character& enemy : enemies) {
+		std::cout << enemy.GetName() << " - Health: " << enemy.GetHealth() << std::endl;
+	}
+}
 
-	Skeleton.Heal(30);
-	cout << Skeleton.GetHealth() << endl;
+void DamageAllEnemies(std::vector<Character>& enemies, int damage) {
+	for (Character& enemy : enemies) {
+		enemy.TakeDamage(damage);
+	}
+}
 
-
-
+void HealAllEnemies(std::vector<Character>& enemies, int healAmount) {
+	for (Character& enemy : enemies) {
+		enemy.Heal(healAmount);
+	}
 }
