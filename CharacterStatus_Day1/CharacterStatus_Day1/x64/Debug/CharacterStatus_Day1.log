@@ -1,2 +1,3 @@
-﻿  character_status.cpp
-  CharacterStatus_Day1.vcxproj -> D:\0000_thePadlockesTech\0001_Projects\0001_CPP\GPTCPP\CharacterStatus_Day1\x64\Debug\CharacterStatus_Day1.exe
+﻿  Character.cpp
+main.obj : error LNK2019: unresolved external symbol "public: void __cdecl Character::Heal(int)" (?Heal@Character@@QEAAXH@Z) referenced in function "void __cdecl HealAllEnemies(class std::vector<class Character,class std::allocator<class Character> > &,int)" (?HealAllEnemies@@YAXAEAV?$vector@VCharacter@@V?$allocator@VCharacter@@@std@@@std@@H@Z)
+D:\0000_thePadlockesTech\0001_Projects\0001_CPP\GPTCPP\CharacterStatus_Day1\x64\Debug\CharacterStatus_Day1.exe : fatal error LNK1120: 1 unresolved externals
