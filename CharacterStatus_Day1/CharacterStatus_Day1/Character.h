@@ -11,6 +11,8 @@ private:
 
 public:
 	Character(std::string characterName, int startingHealth, int startingArmor);
+	Character(const Character& other);
+	~Character();
 	
 	void TakeDamage(int damage);
 	void Heal(int healAmount);

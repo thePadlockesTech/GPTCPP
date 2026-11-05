@@ -8,6 +8,18 @@ Character::Character(std::string characterName, int startingHealth, int starting
 	maxHealth(100), 
 	armor(startingArmor) {}
 
+Character::Character(const Character& other)
+	: name(other.name),
+	health(other.health),
+	maxHealth(other.maxHealth),
+	armor(other.armor) {
+std::cout << name << " copied.\n";
+}
+
+Character::~Character() {
+	//std::cout << name << " destroyed.\n";
+}
+
 void Character::TakeDamage(int damage) {
 	if (damage < 0) {
 		std::cout << "Damage cannot be negative." << std::endl;

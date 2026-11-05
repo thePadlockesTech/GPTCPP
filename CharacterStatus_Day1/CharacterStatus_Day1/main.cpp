@@ -15,10 +15,45 @@ int main() {
 	enemies.emplace_back("Orc", 100, 5);
 	enemies.emplace_back("Skeleton", 45, 3);
 
-	DisplayAllEnemies(enemies);
-	DamageAllEnemies(enemies, 25);
-	HealAllEnemies(enemies, 10);
-	DisplayAllEnemies(enemies);
+	int playerChoiceOfEnemy; 
+	int playerChoiceOfDamage;
+	bool repeatAction = true;
+	bool repeatDamage = false;
+
+	while (repeatAction) {
+		cout << " === ENEMY TARGETING SYSTEM === " << endl;
+		cout << "1." << enemies[0].GetName() << "   | " << enemies[0].GetHealth() << endl;
+		cout << "2." << enemies[1].GetName() << "   | " << enemies[1].GetHealth() << endl;
+		cout << "3." << enemies[2].GetName() << "   | " << enemies[2].GetHealth() << endl;
+		cout << "0. Quit" << endl;
+
+		cout << "Choose an enemy: ";
+
+		if(!(cin >> playerChoiceOfEnemy)) {
+			cout << "Invalid input. Please enter a number." << endl;
+			cin.clear();
+			cin.ignore(1000, '\n');
+			continue;
+		}
+
+		if (playerChoiceOfEnemy == 0) {
+			cout << "Exiting the game." << endl;
+			repeatAction = false;
+			continue;
+		}
+
+		if (playerChoiceOfEnemy < 1 || static_cast<std::size_t>(playerChoiceOfEnemy) > enemies.size()) {
+			cout << "Invalid choice. Please select a valid enemy." << endl;
+			continue;
+		}
+
+		int enemyIndex = playerChoiceOfEnemy - 1; // Adjust for zero-based index
+
+		
+		
+
+	}
+
 }
 
 void DisplayAllEnemies(const std::vector<Character>& enemies) {
