@@ -19,6 +19,7 @@ public:
 	void SetArmor(int armorValue);
 	
 	int GetHealth() const;
+	int GetArmor() const;
 	std::string GetName() const;
 
 

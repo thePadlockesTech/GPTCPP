@@ -48,6 +48,11 @@ int Character::GetHealth() const {
 	return health;
 }
 
+int Character::GetArmor() const {
+	return armor;
+}
+
 std::string Character::GetName() const {
 	return name;
 }
+
