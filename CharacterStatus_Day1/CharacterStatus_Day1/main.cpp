@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "Character.h"
+#include "Combat.h"
 
 enum class BattleState {
 	PlayerTurn,
@@ -12,12 +13,8 @@ enum class BattleState {
 void DisplayAllEnemies(const std::vector<Character>& enemies);
 void DamageAllEnemies(std::vector<Character>& enemies, int damage);
 void HealAllEnemies(std::vector<Character>& enemies, int healAmount);
-bool IsEnemyDefeated(const Character& enemy);
-bool AreAllEnemiesDefeated(const std::vector<Character>& enemies);
-bool ProcessPlayerTurn(
-	std::vector<Character>& enemies,
-	int targetIndex,
-	int damage);
+
+
 
 using namespace std;
 
@@ -38,11 +35,7 @@ int main() {
 	while (repeatAction) {
 		
 		if (currentState == BattleState::PlayerTurn) {
-			cout << " === ENEMY TARGETING SYSTEM === " << endl;
-			cout << "1. " << enemies[0].GetName() << "   | " << enemies[0].GetHealth() << endl;
-			cout << "2. " << enemies[1].GetName() << "   | " << enemies[1].GetHealth() << endl;
-			cout << "3. " << enemies[2].GetName() << "   | " << enemies[2].GetHealth() << endl;
-			cout << "0. Quit" << endl;
+			DisplayEnemies(enemies);
 
 			cout << "Choose an enemy: ";
 
@@ -94,15 +87,9 @@ int main() {
 		}
 		else if (currentState == BattleState::EnemyTurn) {
 			cout << "Enemy's turn!" << endl;
-			for (const Character& enemy : enemies) {
-				if (!IsEnemyDefeated(enemy)) {
-					int playerHealthBeforeDamage = player.GetHealth();
-					player.TakeDamage(12);
-					int playerHealthAfterDamage = player.GetHealth();
-					cout << enemy.GetName() << " attacks! " << player.GetName() << " took " << playerHealthBeforeDamage - playerHealthAfterDamage << " damage. Remaining health: " << player.GetHealth() << endl;
-					break;
-				}
-			}
+
+			ProcessEnemyTurn(player, enemies);
+
 			if(IsEnemyDefeated(player)) {
 				cout << player.GetName() << " has been defeated!" << endl;
 				currentState = BattleState::Defeat;
@@ -116,6 +103,8 @@ int main() {
 	}
 
 }
+
+
 
 void DisplayAllEnemies(const std::vector<Character>& enemies) {
 	for (const Character& enemy : enemies) {
@@ -135,33 +124,7 @@ void HealAllEnemies(std::vector<Character>& enemies, int healAmount) {
 	}
 }
 
-bool IsEnemyDefeated(const Character& enemy) {
-	return enemy.GetHealth() <= 0;
-}
 
-bool AreAllEnemiesDefeated(const std::vector<Character>& enemies) {
-	for (const Character& enemy : enemies) {
-		if (!IsEnemyDefeated(enemy)) {
-			return false;
-		}
-	}
-	return true;
-}
 
-bool ProcessPlayerTurn(
-	std::vector<Character>& enemies,
-	int targetIndex,
-	int damage)
-{
-	if (targetIndex >= 0 && static_cast<std::size_t>(targetIndex) < enemies.size() && damage >= 0 && !IsEnemyDefeated(enemies[targetIndex])) {
-		int healthBeforeDamage = enemies[targetIndex].GetHealth();
-		enemies[targetIndex].TakeDamage(damage);
-		int healthAfterDamage = enemies[targetIndex].GetHealth(); 
-		cout << enemies[targetIndex].GetName() << " took " <<  healthBeforeDamage - healthAfterDamage << " damage. Remaining health: " << enemies[targetIndex].GetHealth() << endl;
-		return true;
-	}
-	else {
-		cout << "Invalid target or damage amount." << endl;
-		return false;
-	}
-}
+
+

@@ -131,7 +131,8 @@
             "c:\\program files\\microsoft visual studio\\18\\community\\vc\\tools\\msvc\\14.51.36231\\include\\vector",
             "c:\\program files\\microsoft visual studio\\18\\community\\vc\\tools\\msvc\\14.51.36231\\include\\__msvc_bit_utils.hpp",
             "d:\\0000_thepadlockestech\\0001_projects\\0001_cpp\\gptcpp\\characterstatus_day1\\characterstatus_day1\\character.h",
-            "c:\\program files\\microsoft visual studio\\18\\community\\vc\\tools\\msvc\\14.51.36231\\include\\string"
+            "c:\\program files\\microsoft visual studio\\18\\community\\vc\\tools\\msvc\\14.51.36231\\include\\string",
+            "d:\\0000_thepadlockestech\\0001_projects\\0001_cpp\\gptcpp\\characterstatus_day1\\characterstatus_day1\\combat.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []
