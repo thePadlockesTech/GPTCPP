@@ -19,6 +19,7 @@ void HealAllEnemies(std::vector<Character>& enemies, int healAmount);
 using namespace std;
 
 int main() {
+
 	BattleState currentState = BattleState::PlayerTurn;
 
 	Character player("Hero", 100, 5);
@@ -101,8 +102,9 @@ int main() {
 		}
 
 	}
-
 }
+
+
 
 
 
